@@ -1,0 +1,19 @@
+.Content {
+    background-color: gold;
+    min-height: 30vh;
+    padding: 20px;
+}
+
+.Content label {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-top: 15px;
+    grid-row-gap: 10px;
+    background-color: chartreuse;
+}
+
+
+button {
+    margin-top: 20px;
+}
