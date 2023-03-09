@@ -25,3 +25,7 @@ const App = () => {
 };
 
 export default App;
+
+// react key
+// onChange, onBlur
+// useState, useRef
