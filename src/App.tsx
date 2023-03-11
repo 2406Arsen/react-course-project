@@ -1,6 +1,8 @@
-import Content from './Components/Content/Content';
-import Footer from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
+// import Content from './Components/Content/Content';
+// import Footer from './Components/Footer/Footer';
+// import Header from './Components/Header/Header';
+
+import TodoList from './Components/TodoList/TodoList';
 
 export interface Data {
 	header: string;
@@ -8,18 +10,19 @@ export interface Data {
 	footer: string;
 }
 
-const data: Data = {
-	header: 'Text for Header component',
-	content: 'Text for Content component',
-	footer: 'Text for Footer component',
-};
+// const data: Data = {
+// 	header: 'Text for Header component',
+// 	content: 'Text for Content component',
+// 	footer: 'Text for Footer component',
+// };
 
 const App = () => {
 	return (
 		<>
-			<Header title={data.header} />
+			<TodoList />
+			{/* <Header title={data.header} />
 			<Content content={data.content} />
-			<Footer footer={data.footer} />
+			<Footer footer={data.footer} /> */}
 		</>
 	);
 };
