@@ -1,0 +1,23 @@
+// @import '../../styles/mixins/mixins.scss';
+
+
+.TodoList {
+    padding: 20px;
+    background-color: var(--bg-color);
+
+    .addTodo {
+        display: flex;
+        grid-column-gap: 10px;
+        background-color: var(--bg-color);
+        width: 100%;
+        max-width: max-content;
+        padding: 10px;
+        
+        button {
+            background-color: var(--inverted-bg-color);
+            color: var(--inverted-primary-color);
+        }
+    }
+
+
+}

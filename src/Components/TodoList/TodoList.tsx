@@ -1,6 +1,6 @@
-import './TodoList.css';
+import './TodoList.scss';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TodoItem } from './TodoItem/TodoItem';
 
 const TodoList = () => {
@@ -20,19 +20,15 @@ const TodoList = () => {
 		setInputValue('');
 	};
 
-	useEffect(() => {
-		console.log(todoList, 'todo list');
-	}, [todoList]);
-
 	return (
-		<div className='TodoList'>
+		<div className='TodoList' >
 			<div className='addTodo'>
 				<input
 					type='text'
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
 				/>
-				<button onClick={handleAddTodo}>Add todo</button>
+				<button onClick={handleAddTodo} >Add todo</button>
 			</div>
 
 			{todoList.map((todo) => {
