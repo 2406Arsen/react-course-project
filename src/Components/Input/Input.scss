@@ -1,0 +1,12 @@
+.Input {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 5px;
+    margin-top: 10px;
+    font: var(--font-xl);
+
+    input {
+        padding: 5px;
+        color: var(--primary-color);
+    }
+}

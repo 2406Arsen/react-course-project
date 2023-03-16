@@ -1,0 +1,17 @@
+.LoginPage {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--inverted-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.loginBtn {
+    min-width: 300px;
+    padding: 6px 12px;
+    font-size: var(--font-size-l);
+}

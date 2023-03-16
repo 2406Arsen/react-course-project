@@ -1,4 +1,5 @@
 import { FC, useRef, useState } from 'react';
+import { Input } from '../Input/Input';
 import { Users } from '../Users/Users';
 import './Content.css';
 
@@ -37,36 +38,33 @@ const Content: FC<ContentProps> = ({ content }) => {
 		<main className='Content'>
 			<p>{content}</p>
 			<form onSubmit={handleSubmit}>
-				<label>
-					Username
-					<input
-						type='text'
-						name='username'
-						onChange={handleChange}
-						onBlur={handleBlur}
-						// defaultValue='default value'
-						value={value}
-					/>
-				</label>
-				<label>
-					ref
-					<input
-						ref={ref}
-						type='ref'
-						name='ref'
-						// onChange={(e)=> ref.current = e.target.value}
-					/>
-				</label>
+				<Input
+					label='Username'
+					type='text'
+					name='username'
+					onChange={handleChange}
+					onBlur={handleBlur}
+					// defaultValue='default value'
+					value={value}
+				/>
+				<Input
+					//@ts-ignore
+					ref={ref}
+					type='ref'
+					name='ref'
+					label='ref'
+				// onChange={(e)=> ref.current = e.target.value}
+				/>
 				<p>{value}</p>
 				{/* <p>{ref.current}</p> */}
 				<label>
 					Password
-					<input type='password' name='password' />
+					<Input type='password' name='password' />
 				</label>
 				<button type='submit'>submit button</button>
 				<button
 					type='reset'
-					// onClick={handleClick}
+				// onClick={handleClick}
 				>
 					reset button
 				</button>

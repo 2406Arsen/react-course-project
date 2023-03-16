@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Input } from '../Input/Input';
 import './Header.css';
 
 interface HeaderProps {
@@ -16,7 +17,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
 
 	return (
 		<header className='Header'>
-			<input
+			<Input
 				type='text'
 				onChange={handleChangeInputValue}
 				value={headerValue}

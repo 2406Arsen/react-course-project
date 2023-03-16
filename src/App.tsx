@@ -1,27 +1,55 @@
 
-import { useState } from 'react';
-import TodoList from './Components/TodoList/TodoList';
-import { Routes, Route } from 'react-router-dom'
-import { MainPage } from './pages/MainPage/MainPage';
-import { NotFound } from './pages/NotFound/NotFound';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { AppLink } from './Components/AppLink/AppLink';
+import { Theme, ThemeSwitcher } from './Components/ThemeSwitcher/ThemeSwitcher';
+import { USER_LOCALSTORAGE_KEY } from './constants/localStorage';
+import { privateRoutes, publicRoutes, } from './routes/routes';
 
-type Theme = 'dark' | 'light'
+
 const App = () => {
-
 	const [theme, setTheme] = useState<Theme>('dark');
+	const userIsAuth = localStorage.getItem(USER_LOCALSTORAGE_KEY)
+
+	const navigate = useNavigate()
+
+	const handleLogout = () => {
+		localStorage.removeItem(USER_LOCALSTORAGE_KEY)
+		navigate('/login')
+	}
+
+	// useEffect(() => {
+		if (!userIsAuth) {
+			navigate('/login')
+		}
+	// }, [])
 
 	return (
 		<>
 			<div className={`App ${theme}`}>
-				<button onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}>theme switcher</button>
+				<ThemeSwitcher setTheme={setTheme} />
+				<button onClick={handleLogout}>log out</button>
+				<AppLink to='/' >home</AppLink>
+				<AppLink to='/todo'>todo</AppLink>
+				<AppLink to='/login'>login</AppLink>
 				<Routes>
-					{true && (
+					{!userIsAuth ? (
 						<>
-							<Route path='/' element={<MainPage />} />
-							<Route path='/todo' element={<TodoList />} />
-							<Route path='/*' element={<NotFound />} />
+							{
+								publicRoutes.map(({ element, path }) =>
+									<Route path={path} element={element} key={path} />
+								)
+							}
 						</>
-					)}
+					) :
+						<>
+							{
+								privateRoutes.map(({ element, path }) =>
+									<Route path={path} element={element} key={path} />
+								)
+							}
+						</>
+					}
 				</Routes>
 			</div>
 
@@ -37,9 +65,7 @@ export default App;
 
 //======== homework ========
 
-//new login page
-// if not user authenticated hide routes 
-
-//// - not available user UserChecker HOC provider
-//// - homework create AuthProvider
-//// - react router useNavigation, useLocation, useParams
+//Button Component
+// Private Public AppLinks   
+//redo app component
+//useLocalStorage
