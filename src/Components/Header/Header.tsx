@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Input } from '../Input/Input';
+import { Input } from '../UI/Input/Input';
 import './Header.css';
 
 interface HeaderProps {

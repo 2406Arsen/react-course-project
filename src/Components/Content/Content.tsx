@@ -1,5 +1,6 @@
 import { FC, useRef, useState } from 'react';
-import { Input } from '../Input/Input';
+import { Button } from '../UI/Button/Button';
+import { Input } from '../UI/Input/Input';
 import { Users } from '../Users/Users';
 import './Content.css';
 
@@ -61,18 +62,18 @@ const Content: FC<ContentProps> = ({ content }) => {
 					Password
 					<Input type='password' name='password' />
 				</label>
-				<button type='submit'>submit button</button>
-				<button
-					type='reset'
-				// onClick={handleClick}
+				<Button>submit Button</Button>
+				<Button>
+					reset Button
+				</Button>
+				<Button
+					onClick={() => setHiddenUsers((prev) => !prev)}
+					type='secondary'
 				>
-					reset button
-				</button>
-				<button type='button' onClick={() => setHiddenUsers((prev) => !prev)}>
 					hide users
-				</button>
+				</Button>
 			</form>
-			{<Users isHiddenUsers={isHiddenUsers} />}
+			<Users isHiddenUsers={isHiddenUsers} />
 		</main>
 	);
 };
