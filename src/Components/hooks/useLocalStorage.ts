@@ -4,7 +4,7 @@ import { LOCALSTORAGE_KEYS } from "../../constants/localStorage";
 
 type useLocalStorageReturnType<Type> = [Type, React.Dispatch<React.SetStateAction<Type>>]
 
-function useLocalStorage<Type>(key: LOCALSTORAGE_KEYS, defaultValue: Type):useLocalStorageReturnType<Type> {
+function useLocalStorage<Type>(key: LOCALSTORAGE_KEYS, defaultValue: Type): useLocalStorageReturnType<Type> {
     const [value, setValue] = useState<Type>(() => {
         let currentValue;
 
@@ -19,7 +19,7 @@ function useLocalStorage<Type>(key: LOCALSTORAGE_KEYS, defaultValue: Type):useLo
         return currentValue;
     });
 
-    useEffect(() => {        
+    useEffect(() => {
         localStorage.setItem(key, JSON.stringify(value));
     }, [value, key]);
 

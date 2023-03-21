@@ -22,9 +22,6 @@ export const privateRoutes = [
     {
         path: '/todo',
         element: <TodoList />
-    },    {
-        path: '/login',
-        element: <LoginPage />
     },
     {
         path: '*',

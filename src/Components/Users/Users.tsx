@@ -1,19 +1,34 @@
 import './Users.css';
-import { users } from './users.data';
 import { useEffect, useState } from 'react';
+import { Button } from '../UI/Button/Button';
+import UserService from '../../api/Services/UserService/UserService';
+import { User } from '../../api/Services/UserService/types';
 
 export const Users = ({ isHiddenUsers }: { isHiddenUsers: boolean }) => {
-	useEffect(() => {
-		console.log(isHiddenUsers, 'changed');
+// const {getAllUsers,users} = useUsers()
+	const [users, setUsers] = useState<User[]>()
 
-		return () => {
-			console.log('unmount');
-		};
-	}, [isHiddenUsers]);
+	const handleGetAllUsers = async () => {
+		try {
+			const users = await UserService.getAllUsers()
+			setUsers(users)
+		} catch (error) {
+
+		}
+	}
+
+	// useEffect(() => {
+	// 	// console.log('mounted');
+
+	// 	return () => {
+	// 		console.log('unmounted');
+	// 	};
+	// }, []);
 
 	return (
 		<div>
-			{users.map((user) => {
+			<Button type='secondary' onClick={handleGetAllUsers}>get all users </Button>
+			{users?.map((user) => {
 				return (
 					<p
 						onClick={(e) => {

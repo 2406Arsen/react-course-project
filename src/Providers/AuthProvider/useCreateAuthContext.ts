@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from '../../Components/hooks/useLocalStorage';
 import { LOCALSTORAGE_KEYS } from "../../constants/localStorage"
-import useLocalStorage from "./useLocalStorage"
 
 interface User {
     username: string;
@@ -10,18 +10,20 @@ interface User {
 }
 
 
-function useAuth() {
+export function useCreateAuthContext() {
     const navigate = useNavigate()
-    
+
     const [userAuth, setUserAuth] = useLocalStorage<User | null>(LOCALSTORAGE_KEYS.USER_KEY, null)
 
+    useEffect(() => {
+        if (!userAuth) {
+            navigate('/login')
+        }
+    }, [])
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    if (!!userAuth) {
-        navigate('/login')
-    }
-    
+
     const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value)
     }
@@ -29,11 +31,10 @@ function useAuth() {
         setPassword(e.target.value)
     }
 
-
-
     const handleLogin = () => {
         const newUser = { username, password }
-        alert(JSON.stringify(newUser, null, 2))
+        console.log(newUser);
+
         setUserAuth(newUser)
         setUsername('')
         setPassword('')
@@ -44,7 +45,6 @@ function useAuth() {
         setUserAuth(null)
         navigate('/login')
     }
-
 
 
     return {
@@ -59,4 +59,3 @@ function useAuth() {
     }
 }
 
-export default useAuth

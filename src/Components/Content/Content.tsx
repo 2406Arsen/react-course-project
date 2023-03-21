@@ -49,8 +49,6 @@ const Content: FC<ContentProps> = ({ content }) => {
 					value={value}
 				/>
 				<Input
-					//@ts-ignore
-					ref={ref}
 					type='ref'
 					name='ref'
 					label='ref'
@@ -73,7 +71,7 @@ const Content: FC<ContentProps> = ({ content }) => {
 					hide users
 				</Button>
 			</form>
-			<Users isHiddenUsers={isHiddenUsers} />
+			{!isHiddenUsers&& <Users isHiddenUsers={isHiddenUsers} />}
 		</main>
 	);
 };

@@ -1,6 +1,6 @@
-import useAuth from '../../Components/hooks/useAuth'
 
 import { Input } from '../../Components/UI/Input/Input'
+import { useAuth } from '../../Providers/AuthProvider'
 import './LoginPage.scss'
 
 
