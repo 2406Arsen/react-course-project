@@ -1,20 +1,19 @@
 
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 import { Navbar } from './Components/Navbar/Navbar';
-import { Theme, ThemeSwitcher } from './Components/UI/ThemeSwitcher/ThemeSwitcher';
+import { ThemeSwitcher } from './Components/UI/ThemeSwitcher/ThemeSwitcher';
 import { useAuth } from './Providers/AuthProvider';
+import { useTheme } from './Providers/ThemeProvider';
 import { privateRoutes, publicRoutes, } from './routes/routes';
 
 const App = () => {
-	const [theme, setTheme] = useState<Theme>('dark');
 	const { userIsAuth } = useAuth()
-
+	const { theme } = useTheme()
 	return (
 		<div className={`App ${theme}`}>
 			<Navbar />
-			<ThemeSwitcher setTheme={setTheme} />
+			<ThemeSwitcher />
 			<Routes>
 				{
 					(!userIsAuth ? publicRoutes : privateRoutes).map(({ element, path }) =>
@@ -28,11 +27,6 @@ const App = () => {
 
 export default App;
 
-
-
-//ThemeProvider
-// useUsers hook
-// userService --> create new private route /createUser --> where we can create new user --> get api from jsonPlaceholder
-
-// UserService createUser like get all users
-// UserService.createUser('login','password')
+// --> useCallback, useMemo, memo 
+// userService
+// todList-> useTodoList, TodoListService, add to local storage --> https://jsonplaceholder.typicode.com/todos

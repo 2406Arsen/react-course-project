@@ -1,11 +1,10 @@
 import './Users.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../UI/Button/Button';
 import UserService from '../../api/Services/UserService/UserService';
 import { User } from '../../api/Services/UserService/types';
 
 export const Users = ({ isHiddenUsers }: { isHiddenUsers: boolean }) => {
-// const {getAllUsers,users} = useUsers()
 	const [users, setUsers] = useState<User[]>()
 
 	const handleGetAllUsers = async () => {
@@ -16,14 +15,6 @@ export const Users = ({ isHiddenUsers }: { isHiddenUsers: boolean }) => {
 
 		}
 	}
-
-	// useEffect(() => {
-	// 	// console.log('mounted');
-
-	// 	return () => {
-	// 		console.log('unmounted');
-	// 	};
-	// }, []);
 
 	return (
 		<div>
