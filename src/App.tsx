@@ -27,6 +27,6 @@ const App = () => {
 
 export default App;
 
-// --> useCallback, useMemo, memo 
-// userService
-// todList-> useTodoList, TodoListService, add to local storage --> https://jsonplaceholder.typicode.com/todos
+// --> HOC, memo, useCallback, useMemo,
+
+// HOC --> High Order Component 

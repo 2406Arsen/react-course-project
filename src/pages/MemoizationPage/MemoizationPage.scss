@@ -1,0 +1,19 @@
+.MemoizationPage {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    p {
+        margin-top: 10px;
+    }
+}
+
+.inputWrapper {
+    background-color: var(--inverted-bg-color);
+    color: var(--inverted-primary-color);
+    padding: 10px;
+    margin: 10px;
+}

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import './Input.scss'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -5,7 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 
-export const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const { label, ...inputProps } = props
 
     return (
@@ -16,3 +17,11 @@ export const Input = (props: InputProps) => {
         </div>
     )
 }
+    // , (prevProps, nextProps) => {
+    //     //component render condition 
+    //     if (prevProps.value !== nextProps.value) {
+    //         return false // return false meaning that component should be updated when condition was true
+    //     }
+    //     return true
+    // }
+)
