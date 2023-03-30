@@ -5,12 +5,14 @@ import './AppLink.scss'
 interface AppLinkProps {
     to: string;
     children: React.ReactNode
+    theme?: 'clear' | 'normal'
+
 }
 
 
-export const AppLink = ({ children, to }: AppLinkProps) => {
+export const AppLink = ({ children, to, theme = "normal" }: AppLinkProps) => {
     return (
-        <span className='AppLink'>
+        <span className={`AppLink ${theme}`}>
             <Link to={to} >{children}</Link>
         </span>
     )

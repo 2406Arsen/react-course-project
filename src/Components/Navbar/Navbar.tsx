@@ -13,9 +13,11 @@ export const Navbar = () => {
                 ? <span className="links">
                     <AppLink to='/' >home</AppLink>
                     <AppLink to='/todo'>todo</AppLink>
+                    <AppLink to='/posts'>Posts</AppLink>
                 </span>
                 : <span className="links">
                     <AppLink to='/login'>login</AppLink>
+                    <AppLink to='/posts'>Posts</AppLink>
                 </span>
             }
 

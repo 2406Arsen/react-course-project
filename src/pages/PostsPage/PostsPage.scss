@@ -1,0 +1,11 @@
+.PostsPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font: var(--font-xl);
+    min-height: 80vh;
+
+}
