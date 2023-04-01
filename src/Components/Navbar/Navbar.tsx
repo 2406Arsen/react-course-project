@@ -14,8 +14,10 @@ export const Navbar = () => {
                     <AppLink to='/' >home</AppLink>
                     <AppLink to='/todo'>todo</AppLink>
                     <AppLink to='/posts'>Posts</AppLink>
+                    <AppLink to='/counter'>Counter</AppLink>
                 </span>
                 : <span className="links">
+                    <AppLink to='/counter'>Counter</AppLink>
                     <AppLink to='/login'>login</AppLink>
                     <AppLink to='/posts'>Posts</AppLink>
                 </span>

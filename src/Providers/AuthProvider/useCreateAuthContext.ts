@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -20,18 +20,20 @@ export function useCreateAuthContext() {
             navigate('/login')
         }
     }, [])
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
 
-    const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeUsername = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value)
-    }
-    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
-    }
+    }, [])
 
-    const handleLogin = () => {
+    const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value)
+    }, [])
+
+    const handleLogin = useCallback(() => {
         const newUser = { username, password }
         console.log(newUser);
 
@@ -39,12 +41,12 @@ export function useCreateAuthContext() {
         setUsername('')
         setPassword('')
         navigate('/')
-    }
+    }, [navigate, password, setUserAuth, username])
 
-    const handleLogout = () => {
+    const handleLogout = useCallback(() => {
         setUserAuth(null)
         navigate('/login')
-    }
+    }, [navigate, setUserAuth])
 
 
     return {

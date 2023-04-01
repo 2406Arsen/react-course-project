@@ -7,12 +7,15 @@ import { Post } from '../../api/Services/PostService/types'
 
 export function usePosts() {
     const navigate = useNavigate()
-
     const [posts, setPosts] = useState<Post[]>()
 
     const getAllPosts = useCallback(async () => {
         try {
             const posts = await PostService.getAllPosts()
+            // dispatch({
+            //     type:'initPosts',
+            //     payload:posts
+            // })
             setPosts(posts)
         } catch (error) {
             console.error(error)
@@ -26,6 +29,7 @@ export function usePosts() {
     }, [navigate])
 
     useEffect(() => {
+        
         getAllPosts()
     }, [])
 

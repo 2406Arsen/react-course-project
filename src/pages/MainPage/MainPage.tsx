@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux/es/exports";
 import Content from "../../Components/Content/Content";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
@@ -15,6 +16,8 @@ const data: Data = {
 };
 
 export const MainPage = () => {
+    const store = useSelector((store) => store)
+    console.log(store, 'store');
 
     return (
         <>

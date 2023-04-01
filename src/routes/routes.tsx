@@ -6,6 +6,7 @@ import { PostPage } from '../pages/PostPage/PostPage';
 import { NotFound } from '../pages/NotFound/NotFound';
 import { CreateUserPage } from '../pages/CreateUserPage/CreateUserPage';
 import { MemoizationPage } from '../pages/MemoizationPage/MemoizationPage';
+import { CounterPage } from '../pages/CounterPage/CounterPage';
 
 
 export const publicRoutes = [
@@ -28,6 +29,10 @@ export const publicRoutes = [
     {
         path: '/posts/:id',
         element: <PostPage />
+    },
+    {
+        path: '/counter',
+        element: <CounterPage />
     },
 
     {
@@ -59,6 +64,10 @@ export const privateRoutes = [
     {
         path: '/posts/:id',
         element: <PostPage />
+    },
+    {
+        path: '/counter',
+        element: <CounterPage />
     },
     {
         path: '*',
