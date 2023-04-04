@@ -14,7 +14,6 @@ const Header: FC<HeaderProps> = ({ title }) => {
 
 		setHeaderValue(newValue);
 	};
-
 	return (
 		<header className='Header'>
 			<Input

@@ -5,12 +5,19 @@ import './PostsPage.scss'
 
 
 export const PostsPage = () => {
-    const { posts, navigateSinglePostPage } = usePosts()
+    const { posts, navigateSinglePostPage, isLoading, error } = usePosts()
 
-    if (!posts) {
+    if (isLoading) {
         return (
             <div className="PostsPage">
                 loading...
+            </div>
+        )
+    }
+    if (error) {
+        return (
+            <div className="PostsPage">
+                {error}
             </div>
         )
     }

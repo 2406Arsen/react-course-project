@@ -1,26 +1,36 @@
 
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PostService from '../../api/Services/PostService/PostService'
-import { Post } from '../../api/Services/PostService/types'
+import { useDispatch, useSelector } from 'react-redux'
+import { initPostsAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
+import {
+    getPostsData,
+    getPostsError,
+    getPostsLoading,
+} from '../../store/features/posts/selectors/post'
 
 
 export function usePosts() {
     const navigate = useNavigate()
-    const [posts, setPosts] = useState<Post[]>()
+    const dispatch = useDispatch()
+    const data = useSelector(getPostsData)
+    const isLoading = useSelector(getPostsLoading)
+    const error = useSelector(getPostsError)
 
     const getAllPosts = useCallback(async () => {
+        dispatch(setLoading(true))
+        dispatch(setGetAllPostsErrorAction(undefined))
         try {
             const posts = await PostService.getAllPosts()
-            // dispatch({
-            //     type:'initPosts',
-            //     payload:posts
-            // })
-            setPosts(posts)
+            dispatch(initPostsAction(posts))
         } catch (error) {
-            console.error(error)
+            console.warn(error)
+            dispatch(setGetAllPostsErrorAction('error message'))
+        } finally {
+            dispatch(setLoading(false))
         }
-    }, [])
+    }, [dispatch])
 
 
     const navigateSinglePostPage = useCallback((postId: number) => {
@@ -29,12 +39,15 @@ export function usePosts() {
     }, [navigate])
 
     useEffect(() => {
-        
-        getAllPosts()
-    }, [])
+        if (!data.length) {
+            getAllPosts()
+        }
+    }, [getAllPosts, data])
 
     return {
-        posts,
+        posts: data,
         navigateSinglePostPage,
+        isLoading,
+        error
     }
 }

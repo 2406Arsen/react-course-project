@@ -16,8 +16,6 @@ const data: Data = {
 };
 
 export const MainPage = () => {
-    const store = useSelector((store) => store)
-    console.log(store, 'store');
 
     return (
         <>

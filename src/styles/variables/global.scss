@@ -23,3 +23,9 @@
     --red-light: #f00;
     --red-dark: #ce0505;
 }
+
+button {
+    &:disabled {
+        background-color: red;
+    }
+}
