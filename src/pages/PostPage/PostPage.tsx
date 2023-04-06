@@ -1,8 +1,9 @@
 
 import { useParams, redirect } from 'react-router-dom'
 import { PostCard } from '../../Components/PostCard/PostCard'
-import { usePost } from '../../Components/hooks/usePost'
-
+import { usePosts } from '../../Components/hooks/usePosts'
+import { useEffect } from 'react'
+import './PostPage.scss'
 interface PostPageParams {
     id: string
 }
@@ -10,18 +11,25 @@ interface PostPageParams {
 export const PostPage = () => {
 
     const { id } = useParams<Partial<PostPageParams>>()
-    const { post } = usePost(Number(id)) 
+    const { selectedPost, getPost, isLoading } = usePosts()
 
     if (isNaN(Number(id))) {
-         redirect('posts')
+        redirect('posts')
     }
 
+    useEffect(() => {
+        if (!selectedPost) {
+            getPost(Number(id))
+        }
+    }, [getPost, id, selectedPost])
+
+
     return (
-        <div>
+        <div className='PostPage'>
             {
-                post
-                    ? <PostCard post={post} />
-                    : <p> post not found</p>
+                !isLoading && selectedPost
+                    ? <PostCard post={selectedPost} />
+                    : <p> loading...</p>
             }
         </div>
     )

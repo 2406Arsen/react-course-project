@@ -1,15 +1,16 @@
 
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PostService from '../../api/Services/PostService/PostService'
 import { useDispatch, useSelector } from 'react-redux'
-import { initPostsAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
+import { initPostsAction, selectPostAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
 import {
     getPostsData,
     getPostsError,
     getPostsLoading,
+    getSelectedPost,
 } from '../../store/features/posts/selectors/post'
-
+import { Post } from '../../api/Services/PostService/types'
 
 export function usePosts() {
     const navigate = useNavigate()
@@ -17,6 +18,7 @@ export function usePosts() {
     const data = useSelector(getPostsData)
     const isLoading = useSelector(getPostsLoading)
     const error = useSelector(getPostsError)
+    const selectedPost = useSelector(getSelectedPost)
 
     const getAllPosts = useCallback(async () => {
         dispatch(setLoading(true))
@@ -33,21 +35,38 @@ export function usePosts() {
     }, [dispatch])
 
 
-    const navigateSinglePostPage = useCallback((postId: number) => {
-        console.log(postId, 'postId');
-        navigate(`${postId}`)
-    }, [navigate])
 
-    useEffect(() => {
-        if (!data.length) {
-            getAllPosts()
+    const selectPost = useCallback((post: Post) => {
+        dispatch(selectPostAction(post))
+    }, [dispatch])
+
+
+    const navigateSinglePostPage = useCallback((post: Post) => {
+        navigate(`${post.id}`)
+        selectPost(post)
+    }, [navigate, selectPost])
+
+    const getPost = useCallback(async (postId: number) => {
+        dispatch(setLoading(true))
+        try {
+            const post = await PostService.getPostById(postId)
+            selectPost(post)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            dispatch(setLoading(false))
         }
-    }, [getAllPosts, data])
+    }, [dispatch, selectPost])
+
+
 
     return {
         posts: data,
         navigateSinglePostPage,
         isLoading,
-        error
+        error,
+        selectedPost,
+        getAllPosts,
+        getPost
     }
 }

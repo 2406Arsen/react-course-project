@@ -2,10 +2,17 @@
 import { usePosts } from '../../Components/hooks/usePosts'
 import { PostCard } from '../../Components/PostCard/PostCard'
 import './PostsPage.scss'
+import { useEffect } from 'react'
 
 
 export const PostsPage = () => {
-    const { posts, navigateSinglePostPage, isLoading, error } = usePosts()
+    const { posts, navigateSinglePostPage, isLoading, error, getAllPosts } = usePosts()
+
+    useEffect(() => {
+        if (!posts.length) {
+            getAllPosts()
+        }
+    }, [getAllPosts, posts])
 
     if (isLoading) {
         return (

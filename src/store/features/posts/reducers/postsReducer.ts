@@ -1,7 +1,7 @@
 import { Post } from "../../../../api/Services/PostService/types"
 import { PostActionTypes } from "../types/posts"
 
-type Payload = Post[] | boolean | string
+type Payload = Post | Post[] | boolean | string
 
 
 interface ActionType {
@@ -12,7 +12,8 @@ interface ActionType {
 interface PostsStateSchema {
     data: Post[],
     isLoading: boolean,
-    error?: string
+    error?: string,
+    selectedPost?: Post
 }
 
 const initialState: PostsStateSchema = {
@@ -28,6 +29,8 @@ export function postsReducer(state = initialState, action: ActionType): PostsSta
             return { ...state, data: action.payload as Post[] }
         case PostActionTypes.SET_ERROR:
             return { ...state, error: action.payload as string }
+        case PostActionTypes.SELECT_POST:
+            return { ...state, selectedPost: action.payload as Post }
         default:
             return state
     }

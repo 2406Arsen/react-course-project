@@ -11,7 +11,13 @@ export const initPostsAction = (payload: Post[]) => ({
     type: PostActionTypes.INIT_POSTS,
     payload
 })
+
 export const setGetAllPostsErrorAction = (payload?: string) => ({
     type: PostActionTypes.SET_ERROR,
+    payload
+})
+
+export const selectPostAction = (payload?: Post) => ({
+    type: PostActionTypes.SELECT_POST,
     payload
 })

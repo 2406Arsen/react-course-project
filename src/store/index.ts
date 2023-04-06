@@ -3,7 +3,6 @@ import { settingsReducer } from "./features/settings/reducers/settingsReducer";
 import { counterReducer } from "./features/counter/reducers/counterReducer";
 import { postsReducer } from "./features/posts/reducers/postsReducer";
 import thunk from "redux-thunk";
-//@ts-ignore
 import logger from "redux-logger";
 
 const reducers = combineReducers({
@@ -12,7 +11,7 @@ const reducers = combineReducers({
     posts: postsReducer
 })
 
-const middlewareEnhancer = applyMiddleware(thunk,logger)
+const middlewareEnhancer = applyMiddleware(thunk, logger)
 
 const composeWithDevTools =
     //@ts-ignore
