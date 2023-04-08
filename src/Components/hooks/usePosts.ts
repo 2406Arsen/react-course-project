@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PostService from '../../api/Services/PostService/PostService'
 import { useDispatch, useSelector } from 'react-redux'
-import { initPostsAction, selectPostAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
+// import { initPostsAction, selectPostAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
 import {
     getPostsData,
     getPostsError,
@@ -11,6 +11,7 @@ import {
     getSelectedPost,
 } from '../../store/features/posts/selectors/post'
 import { Post } from '../../api/Services/PostService/types'
+import { postActions } from '../../store/features/posts'
 
 export function usePosts() {
     const navigate = useNavigate()
@@ -20,24 +21,30 @@ export function usePosts() {
     const error = useSelector(getPostsError)
     const selectedPost = useSelector(getSelectedPost)
 
+    // const {
+    //     data,
+    //     isLoading,
+    //     error,
+    //     selectedPost
+    // } = useAppSelector(store => store.posts, shallowEqual)
     const getAllPosts = useCallback(async () => {
-        dispatch(setLoading(true))
-        dispatch(setGetAllPostsErrorAction(undefined))
+        dispatch(postActions.setLoading(true))
+        dispatch(postActions.setError(undefined))
         try {
             const posts = await PostService.getAllPosts()
-            dispatch(initPostsAction(posts))
+            dispatch(postActions.initPosts(posts))
         } catch (error) {
             console.warn(error)
-            dispatch(setGetAllPostsErrorAction('error message'))
+            dispatch(postActions.setError('error message'))
         } finally {
-            dispatch(setLoading(false))
+            dispatch(postActions.setLoading(false))
         }
     }, [dispatch])
 
 
 
     const selectPost = useCallback((post: Post) => {
-        dispatch(selectPostAction(post))
+        dispatch(postActions.selectPost(post))
     }, [dispatch])
 
 
@@ -47,14 +54,14 @@ export function usePosts() {
     }, [navigate, selectPost])
 
     const getPost = useCallback(async (postId: number) => {
-        dispatch(setLoading(true))
+        dispatch(postActions.setLoading(true))
         try {
             const post = await PostService.getPostById(postId)
             selectPost(post)
         } catch (error) {
             console.error(error)
         } finally {
-            dispatch(setLoading(false))
+            dispatch(postActions.setLoading(false))
         }
     }, [dispatch, selectPost])
 
