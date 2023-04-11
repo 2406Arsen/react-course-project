@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PostService from '../../api/Services/PostService/PostService'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 // import { initPostsAction, selectPostAction, setGetAllPostsErrorAction, setLoading } from '../../store/features/posts/actions/postActions'
 import {
     getPostsData,
@@ -12,10 +12,12 @@ import {
 } from '../../store/features/posts/selectors/post'
 import { Post } from '../../api/Services/PostService/types'
 import { postActions } from '../../store/features/posts'
+import { fetchAllPosts } from '../../store/features/posts/model/fetchAllPosts'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 
 export function usePosts() {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const data = useSelector(getPostsData)
     const isLoading = useSelector(getPostsLoading)
     const error = useSelector(getPostsError)
@@ -27,18 +29,20 @@ export function usePosts() {
     //     error,
     //     selectedPost
     // } = useAppSelector(store => store.posts, shallowEqual)
-    const getAllPosts = useCallback(async () => {
-        dispatch(postActions.setLoading(true))
-        dispatch(postActions.setError(undefined))
-        try {
-            const posts = await PostService.getAllPosts()
-            dispatch(postActions.initPosts(posts))
-        } catch (error) {
-            console.warn(error)
-            dispatch(postActions.setError('error message'))
-        } finally {
-            dispatch(postActions.setLoading(false))
-        }
+
+    const getAllPosts = useCallback(() => {
+        dispatch(fetchAllPosts())
+        // dispatch(postActions.setLoading(true))
+        // dispatch(postActions.setError(undefined))
+        // try {
+        //     const posts = await PostService.getAllPosts()
+        //     dispatch(postActions.initPosts(posts))
+        // } catch (error) {
+        //     console.warn(error)
+        //     dispatch(postActions.setError('error message'))
+        // } finally {
+        //     dispatch(postActions.setLoading(false))
+        // }
     }, [dispatch])
 
 

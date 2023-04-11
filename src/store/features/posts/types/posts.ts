@@ -6,11 +6,12 @@
 // }
 
 import { Post } from "../../../../api/Services/PostService/types";
+import { ErrorMessage } from "../../../../constants/errorMessage";
 
 
 export interface PostsStateSchema {
     data: Post[],
     isLoading: boolean,
-    error?: string,
+    error?: ErrorMessage,
     selectedPost?: Post
 }
