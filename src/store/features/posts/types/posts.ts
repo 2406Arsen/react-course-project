@@ -6,7 +6,7 @@
 // }
 
 import { Post } from "../../../../api/Services/PostService/types";
-import { ErrorMessage } from "../../../../constants/errorMessage";
+import { ErrorMessage } from "../../../../shared/constants/errorMessage";
 
 
 export interface PostsStateSchema {

@@ -1,14 +1,10 @@
 
 import useRegistration from '../../Components/hooks/useRegistration'
-import { Button } from '../../Components/UI/Button/Button'
-import { Input } from '../../Components/UI/Input/Input'
+import { Button } from '../../shared/UI/Button/Button'
+import { Input } from '../../shared/UI/Input/Input'
 import './CreateUserPage.scss'
 
-interface CreateUserPageProps {
-}
-
-
-export const CreateUserPage = ({ }: CreateUserPageProps) => {
+export const CreateUserPage = () => {
     const {
         handleChangePassword,
         handleChangeUsername,

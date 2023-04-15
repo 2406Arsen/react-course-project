@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import { Input } from '../UI/Input/Input';
 import './Header.css';
+import { Input } from '../../shared/UI/Input/Input';
 
 interface HeaderProps {
 	title: string;

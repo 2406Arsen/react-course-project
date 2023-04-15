@@ -1,8 +1,8 @@
-import { FC, useRef, useState } from 'react';
-import { Button } from '../UI/Button/Button';
-import { Input } from '../UI/Input/Input';
+import { FC, useState } from 'react';
 import { Users } from '../Users/Users';
 import './Content.css';
+import { Input } from '../../shared/UI/Input/Input';
+import { Button } from '../../shared/UI/Button/Button';
 
 interface ContentProps {
 	content: string;
@@ -14,7 +14,7 @@ interface ContentProps {
 
 const Content: FC<ContentProps> = ({ content }) => {
 	const [value, setValue] = useState('');
-	const ref = useRef<HTMLInputElement>(null);
+	// const ref = useRef<HTMLInputElement>(null);
 	const [isHiddenUsers, setHiddenUsers] = useState(false);
 	// const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 	// 	e.preventDefault();

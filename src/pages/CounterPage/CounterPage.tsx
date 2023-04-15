@@ -1,4 +1,4 @@
-import { Button } from '../../Components/UI/Button/Button'
+import { Button } from '../../shared/UI/Button/Button'
 import './CounterPage.scss'
 import { useSelector, useDispatch } from 'react-redux'
 

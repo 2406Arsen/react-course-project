@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Post } from '../../../../api/Services/PostService/types'
 import { PostsStateSchema } from '../types/posts'
 import { fetchAllPosts } from '../model/fetchAllPosts'
-import { ErrorMessage } from '../../../../constants/errorMessage'
+import { ErrorMessage } from '../../../../shared/constants/errorMessage'
+import { fetchPostById } from '../model/fetchPostById'
 
 
 const initialState: PostsStateSchema = {
@@ -37,11 +38,18 @@ const postSlice = createSlice({
                 state.isLoading = false
             })
             .addCase(fetchAllPosts.rejected, (state,action) => {
-                // if(action.error.code) {
-                //     state.error = action.error.code;
-                // }else {
-                //     state.error = ErrorMessage.NOT_FOUND
-                // }
+                state.error = action.payload as ErrorMessage
+                state.isLoading = false
+            })
+            builder
+            .addCase(fetchPostById.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(fetchPostById.fulfilled, (state, action) => {
+                state.selectedPost = action.payload
+                state.isLoading = false
+            })
+            .addCase(fetchPostById.rejected, (state,action) => {
                 state.error = action.payload as ErrorMessage
                 state.isLoading = false
             })

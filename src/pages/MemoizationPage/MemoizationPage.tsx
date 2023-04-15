@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Input } from '../../Components/UI/Input/Input'
 import { Child } from './Child/Child'
 import './MemoizationPage.scss'
+import { Input } from '../../shared/UI/Input/Input'
 
 export const MemoizationPage = () => {
     const [text, setText] = useState('')

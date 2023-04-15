@@ -4,11 +4,12 @@ import PostService from '../../../../api/Services/PostService/PostService'
 import { errorHandler } from '../../../../shared/utils/errorHandler'
 import { AsyncThunkConfig } from '../../../../shared/types/asyncThunkConfig'
 
-export const fetchAllPosts = createAsyncThunk<Post[], void, AsyncThunkConfig>(
-    'postSlice/fetchAllPosts',
-    async (_, thunkApi) => {
+export const fetchPostById = createAsyncThunk<Post, number, AsyncThunkConfig>(
+    'postSlice/fetchPostById',
+    async (postId, thunkApi) => {
         try {
-            const response = await PostService.getAllPosts()
+            thunkApi.getState()
+            const response = await PostService.getPostById(postId)
             return response.data
         } catch (error: any) {
             return errorHandler(error, thunkApi)

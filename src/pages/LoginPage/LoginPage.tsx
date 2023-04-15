@@ -1,7 +1,7 @@
 
-import { AppLink } from '../../Components/UI/AppLink/AppLink'
-import { Input } from '../../Components/UI/Input/Input'
 import { useAuth } from '../../Providers/AuthProvider'
+import { AppLink } from '../../shared/UI/AppLink/AppLink'
+import { Input } from '../../shared/UI/Input/Input'
 import './LoginPage.scss'
 
 

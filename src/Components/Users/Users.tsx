@@ -1,8 +1,8 @@
 import './Users.css';
 import { useState } from 'react';
-import { Button } from '../UI/Button/Button';
 import UserService from '../../api/Services/UserService/UserService';
 import { User } from '../../api/Services/UserService/types';
+import { Button } from '../../shared/UI/Button/Button';
 
 export const Users = ({ isHiddenUsers }: { isHiddenUsers: boolean }) => {
 	const [users, setUsers] = useState<User[]>()

@@ -1,8 +1,8 @@
 import './Navbar.scss'
 
-import { AppLink } from "../UI/AppLink/AppLink"
-import { Button } from '../UI/Button/Button'
 import { useAuth } from '../../Providers/AuthProvider'
+import { AppLink } from '../../shared/UI/AppLink/AppLink'
+import { Button } from '../../shared/UI/Button/Button'
 
 export const Navbar = () => {
     const { userIsAuth, logOut } = useAuth()

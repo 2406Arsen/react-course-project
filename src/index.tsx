@@ -8,6 +8,7 @@ import { ThemeProvider } from './Providers/ThemeProvider';
 import { store } from './store';
 
 import './styles/index.scss'
+import ErrorBoundary from './Providers/ErrorBoundary/ErrorBoundary';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -15,11 +16,13 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store} >
 			<BrowserRouter>
-				<AuthProvider>
-					<ThemeProvider>
-						<App />
-					</ThemeProvider>
-				</AuthProvider>
+				<ErrorBoundary>
+					<AuthProvider>
+						<ThemeProvider>
+							<App />
+						</ThemeProvider>
+					</AuthProvider>
+				</ErrorBoundary>
 			</BrowserRouter>
 		</Provider>
 	</React.StrictMode>,
