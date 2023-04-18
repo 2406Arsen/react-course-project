@@ -1,9 +1,10 @@
 .Content {
     min-height: 30vh;
     padding: 20px;
+    background-color: gold;
 }
 
-.Content form {
+.Form {
     display: flex;
     flex-direction: column;
     max-width: 300px;

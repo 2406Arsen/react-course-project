@@ -7,6 +7,7 @@ import { AxiosError } from "axios"
 type ThunkApi = BaseThunkAPI<RootState, any, Dispatch, ErrorMessage>
 
 export function errorHandler(error: AxiosError, thunkApi: ThunkApi) {
+    console.log(error)
     if (error.code === ErrorMessage.ERR_BAD_REQUEST) {
         return thunkApi.rejectWithValue(ErrorMessage.ERR_BAD_REQUEST)
     }

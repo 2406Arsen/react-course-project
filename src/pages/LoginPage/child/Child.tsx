@@ -1,7 +1,7 @@
 
-import { useAuth } from 'Providers/AuthProvider'
 import './LoginPage.scss'
 
+import { useAuth } from 'Providers/AuthProvider'
 import { AppLink } from 'shared/UI/AppLink/AppLink'
 import { Input } from 'shared/UI/Input/Input'
 

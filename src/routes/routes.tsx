@@ -1,13 +1,17 @@
+import { lazy } from 'react'
+
 import TodoList from '../Components/TodoList/TodoList';
 import { MainPage } from '../pages/MainPage/MainPage';
-import { LoginPage } from '../pages/LoginPage/LoginPage';
-import { PostsPage } from '../pages/PostsPage/PostsPage';
+// import { LoginPage } from '../pages/LoginPage/LoginPage';
+// import { PostsPage } from '../pages/PostsPage/PostsPage';
 import { PostPage } from '../pages/PostPage/PostPage';
 import { NotFound } from '../pages/NotFound/NotFound';
 import { CreateUserPage } from '../pages/CreateUserPage/CreateUserPage';
 import { MemoizationPage } from '../pages/MemoizationPage/MemoizationPage';
 import { CounterPage } from '../pages/CounterPage/CounterPage';
 
+const PostsPage = lazy(() => import('../pages/PostsPage/PostsPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
 
 export const publicRoutes = [
     {

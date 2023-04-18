@@ -1,5 +1,4 @@
 import React, { ErrorInfo, ReactNode, Suspense } from 'react';
-import { Navbar } from '../../Components/Navbar/Navbar';
 import { PageError } from '../../Components/PageError/PageError';
 
 interface ErrorBoundaryProps {
@@ -23,7 +22,8 @@ class ErrorBoundary
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         // You can also log the error to an error reporting service
-        console.log(error, errorInfo);
+        console.log(error);
+        console.log(errorInfo); 
     }
 
     render() {

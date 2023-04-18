@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,16 +14,28 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
 	<React.StrictMode>
-		<Provider store={store} >
-			<BrowserRouter>
-				<ErrorBoundary>
-					<AuthProvider>
-						<ThemeProvider>
-							<App />
-						</ThemeProvider>
-					</AuthProvider>
-				</ErrorBoundary>
-			</BrowserRouter>
-		</Provider>
+		<Suspense fallback={<div style={{
+			background: 'gold',
+			fontSize: 72,
+			justifyContent: 'center',
+			alignItems:'center',
+			minHeight:'100vh'
+			
+		}}>
+			loading....
+		</div>
+		}>
+			<Provider store={store} >
+				<BrowserRouter>
+					<ErrorBoundary>
+						<AuthProvider>
+							<ThemeProvider>
+								<App />
+							</ThemeProvider>
+						</AuthProvider>
+					</ErrorBoundary>
+				</BrowserRouter>
+			</Provider>
+		</Suspense>
 	</React.StrictMode>,
 );

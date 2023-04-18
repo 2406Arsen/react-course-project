@@ -16,7 +16,6 @@ const data: Data = {
 };
 
 export const MainPage = () => {
-
     return (
         <>
             <Header title={data.header} />

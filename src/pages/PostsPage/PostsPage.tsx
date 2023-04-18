@@ -5,10 +5,9 @@ import './PostsPage.scss'
 import { useEffect } from 'react'
 
 
-export const PostsPage = () => {
+const PostsPage = () => {
     const { posts, navigateSinglePostPage, isLoading, error, getAllPosts } = usePosts()
 
-    // throw new Error('asdasdsa')
     useEffect(() => {
         if (!posts.length) {
             getAllPosts()
@@ -38,3 +37,5 @@ export const PostsPage = () => {
         </div>
     )
 }
+
+export default PostsPage

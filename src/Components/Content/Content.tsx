@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Users } from '../Users/Users';
-import './Content.css';
+import cls from  './Content.module.scss';
 import { Input } from '../../shared/UI/Input/Input';
 import { Button } from '../../shared/UI/Button/Button';
 
@@ -36,9 +36,9 @@ const Content: FC<ContentProps> = ({ content }) => {
 	};
 
 	return (
-		<main className='Content'>
+		<main className={cls.Content}>
 			<p>{content}</p>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className={cls.Form}>
 				<Input
 					label='Username'
 					type='text'
