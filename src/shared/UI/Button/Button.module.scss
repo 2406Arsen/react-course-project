@@ -3,11 +3,13 @@
     border: none;
     padding: 6px 12px;
     background: none;
+    cursor: pointer;
+
 }
 
 .primary {
-    background-color: var(---bg-color);
-    color: var(--inverted-primary-color);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
 }
 
 .secondary {

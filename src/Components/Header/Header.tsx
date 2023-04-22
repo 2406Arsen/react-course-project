@@ -1,33 +1,27 @@
-import { FC, useState } from 'react';
-import './Header.css';
-import { Input } from '../../shared/UI/Input/Input';
+import { FC, useState, useCallback } from 'react';
+import cls from './Header.module.scss';
+import { Button } from 'shared/UI/Button/Button';
+import { Drawer } from '@mui/material';
+import { Navbar } from 'Components/Navbar/Navbar';
 
-interface HeaderProps {
-	title: string;
-}
 
-const Header: FC<HeaderProps> = ({ title }) => {
-	const [headerValue, setHeaderValue] = useState(title);
+const Header: FC = () => {
+	const [isOpenDrawer, setOpenDrawer] = useState(false)
 
-	const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value;
-
-		setHeaderValue(newValue);
-	};
+	const toggleDrawer = useCallback(() => setOpenDrawer((prev) => !prev), [])
 	return (
-		<header className='Header'>
-			<Input
-				type='text'
-				onChange={handleChangeInputValue}
-				value={headerValue}
-				// style={{
-				// 	padding: '10px',
-				// 	backgroundColor:  ? 'red' : 'green',
-				// }}
-				className={headerValue.length < 5? 'inValid': 'valid'}
-			/>
-			<p>{headerValue}</p>
-		</header>
+		<>
+			<header className={cls.Header}>
+				<Button type='primary' onClick={toggleDrawer}>Open</Button>
+			</header>
+			<Drawer
+				anchor='left'
+				open={isOpenDrawer}
+				onClose={toggleDrawer}
+			>
+				<Navbar />
+			</Drawer>
+		</>
 	);
 };
 

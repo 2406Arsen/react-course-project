@@ -1,8 +1,17 @@
 .Navbar {
     padding: 5px 10px;
+    margin: 5px;
     background: var(--inverted-bg-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--primary-color);
+    flex-direction: column;
+
+}
+
+.links {
+    display: inherit;
+    flex-direction: column;
+    min-height: calc(100vh - 28px - 10px - 10px);
 }

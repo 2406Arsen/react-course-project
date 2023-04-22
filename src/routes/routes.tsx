@@ -12,6 +12,7 @@ import { CounterPage } from '../pages/CounterPage/CounterPage';
 
 const PostsPage = lazy(() => import('../pages/PostsPage/PostsPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
+const RegistrationPage = lazy(() => import('../pages/RegistrationPage/RegistrationPage'))
 
 export const publicRoutes = [
     {
@@ -38,7 +39,10 @@ export const publicRoutes = [
         path: '/counter',
         element: <CounterPage />
     },
-
+    {
+        path: '/registration',
+        element: <RegistrationPage />
+    },
     {
         path: '*',
         element: <NotFound />
@@ -72,6 +76,10 @@ export const privateRoutes = [
     {
         path: '/counter',
         element: <CounterPage />
+    },
+    {
+        path: '/registration',
+        element: <RegistrationPage />
     },
     {
         path: '*',

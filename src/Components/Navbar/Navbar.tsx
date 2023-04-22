@@ -1,4 +1,4 @@
-import './Navbar.scss'
+import cls from './Navbar.module.scss'
 
 import { useAuth } from '../../Providers/AuthProvider'
 import { AppLink } from '../../shared/UI/AppLink/AppLink'
@@ -8,15 +8,15 @@ export const Navbar = () => {
     const { userIsAuth, logOut } = useAuth()
 
     return (
-        <div className="Navbar">
+        <div className={cls.Navbar}>
             {userIsAuth
-                ? <span className="links">
+                ? <span className={cls.links}>
                     <AppLink to='/' >home</AppLink>
                     <AppLink to='/todo'>todo</AppLink>
                     <AppLink to='/posts'>Posts</AppLink>
                     <AppLink to='/counter'>Counter</AppLink>
                 </span>
-                : <span className="links">
+                : <span className={cls.links}>
                     <AppLink to='/counter'>Counter</AppLink>
                     <AppLink to='/login'>login</AppLink>
                     <AppLink to='/posts'>Posts</AppLink>
